@@ -5,6 +5,11 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
   @media (max-width: 700px) {
     padding: 1rem;
