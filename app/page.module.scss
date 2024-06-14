@@ -5,6 +5,12 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+
+  @media (max-width: 700px) {
+    padding: 1rem;
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 .description {
@@ -23,6 +29,10 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+}
+
+.correct {
+  font-size: 30px;
 }
 
 .description p {
@@ -226,5 +236,94 @@
   }
   to {
     transform: rotate(0deg);
+  }
+}
+.matches {
+  .card {
+    h2 {
+      display: flex;
+    }
+    p {
+    }
+    img {
+      margin-right: 10px;
+    }
+  }
+}
+
+.seperator {
+  padding: 0 20px;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  float: right;
+}
+
+.scoreboard {
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(var(--card-border-rgb), 0.15);
+  transition: background 200ms, border 200ms;
+
+  li {
+    gap: 0.5rem;
+    margin-bottom: 10px;
+    color: #555;
+    font-weight: 500;
+
+    &:nth-child(1) {
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: #000;
+    }
+
+    &:nth-child(2) {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #222;
+    }
+    &:nth-child(3) {
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: #333;
+    }
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  > div {
+    &:first-child {
+      flex: 1;
+      li {
+        list-style: none;
+      }
+    }
+    &:last-child {
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 20px;
+      // max-width: 50vw;
+      grid: 1fr / repeat(3, 1fr);
+
+      .card {
+        text-align: center;
+        overflow: hidden;
+        min-width: 340px;
+        width: auto;
+      }
+    }
+  }
+
+  @media (max-width: 700px) {
+    flex-direction: column;
   }
 }
