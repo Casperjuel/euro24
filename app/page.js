@@ -55,7 +55,7 @@ export default async function Home() {
           <ul className={styles.scoreboard}>
             {sortedUsers.map((user) => {
               return (
-                <li key={user}>
+                <li key={user.userid}>
                   <Link href={`/bruger/${user.userid}`}>
                     {user.name} - {user.points} point
                   </Link>
