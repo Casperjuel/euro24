@@ -16,10 +16,10 @@ export default async function Home() {
       name: user,
       userid: user
         .toLowerCase()
-        .replace(" ", "_")
-        .replace("æ", "ae")
-        .replace("ø", "oe")
-        .replace("å", "aa"),
+        .replaceAll(" ", "_")
+        .replaceAll("æ", "ae")
+        .replaceAll("ø", "oe")
+        .replaceAll("å", "aa"),
       points: 0,
     };
   });

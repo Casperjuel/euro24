@@ -22,10 +22,10 @@ const ConvertBets = async () => {
         user: user,
         userid: user
           .toLowerCase()
-          .replace(" ", "_")
-          .replace("æ", "ae")
-          .replace("ø", "oe")
-          .replace("å", "aa"),
+          .replaceAll(" ", "_")
+          .replaceAll("æ", "ae")
+          .replaceAll("ø", "oe")
+          .replaceAll("å", "aa"),
         id: index + 1,
         bet: bet,
       };
