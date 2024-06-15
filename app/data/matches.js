@@ -62,14 +62,14 @@ export const Euro24matches = [
     home: "Ungarn",
     away: "Schweiz",
     time: "2024-06-15",
-    result: null,
+    result: "2",
   },
   {
     id: 3,
     home: "Spanien",
     away: "Kroatien",
     time: "2024-06-15",
-    result: null,
+    result: "1",
   },
   {
     id: 4,
