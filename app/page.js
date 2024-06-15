@@ -6,10 +6,39 @@ import { bets } from "./data/bets";
 import styles from "./page.module.scss";
 import { use } from "react";
 
+const getResults = async () => {
+  const spreadsheet_id = "1lgLIT3prMzMk_z8ea0IPX7zp5zIYU8eUzQer8HV6xTA";
+  const tab_name = "resultater";
+  const api_key = "AIzaSyDdPcUvHKUFXGFNq0MZgbJEeOjtzq4U07w";
+
+  var dataUrl =
+    "https://sheets.googleapis.com/v4/spreadsheets/" +
+    spreadsheet_id +
+    "/values/" +
+    tab_name +
+    "?alt=json&key=" +
+    api_key;
+
+  const data = await fetch(dataUrl).then((res) => res.json());
+  const [ids, results] = data.values;
+
+  const matches = [];
+  ids.forEach((id, index) => {
+    const match = Euro24matches.find((match) => match.id.toString() === id);
+    if (match) {
+      match.result = results[index] === "-" ? null : results[index];
+      matches.push(match);
+    }
+  });
+
+  return matches;
+};
+
 export default async function Home() {
   const allBets = await bets;
   const findUsers = allBets.map((bet) => bet.user);
   findUsers.sort();
+  const Matches = await getResults();
 
   const users = [...new Set(findUsers)].map((user) => {
     return {
@@ -32,7 +61,7 @@ export default async function Home() {
   users.forEach((user) => {
     allBets.forEach((bet) => {
       if (bet.user === user.name) {
-        const match = Euro24matches.find((match) => match.id === bet.id);
+        const match = Matches.find((match) => match.id === bet.id);
         if (match.result) {
           user.points += calculatePoints(bet.bet, match.result.toString());
         }
@@ -66,7 +95,7 @@ export default async function Home() {
         </div>
 
         <div className={[styles.grid, styles.matches].join(" ")}>
-          {Euro24matches.map((match) => (
+          {Matches.map((match) => (
             <div key={match.id} className={styles.card}>
               <h2>
                 <span
