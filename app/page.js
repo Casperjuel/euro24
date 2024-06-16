@@ -147,7 +147,7 @@ export default async function Home() {
                 </span>{" "}
               </h2>
               {match.result ? (
-                <p>
+                <p className={styles.hover}>
                   Afviklet
                   <br />
                   {
@@ -156,6 +156,15 @@ export default async function Home() {
                       .filter((bet) => bet.bet === match.result).length
                   }
                   / {users.length} har gættet rigtigt
+                  <span className={styles.tooltip} style={{
+                    display: 'none'
+                  }}>
+                    {allBets
+                      .filter((bet) => bet.id === match.id)
+                      .filter((bet) => bet.bet === match.result).map((bet) => (
+                        <span key={bet.user}>{bet.user}</span>
+                      ))}
+                  </span>
                 </p>
               ) : (
                 <p>Starter {new Date(match.time).toDateString()}</p>

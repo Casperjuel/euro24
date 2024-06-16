@@ -73,6 +73,7 @@
   border: 1px solid rgba(var(--card-border-rgb), 0);
   transition: background 200ms, border 200ms;
   display: flex;
+  overflow: visible;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -345,7 +346,7 @@
 
       .card {
         text-align: center;
-        overflow: hidden;
+        // overflow: hidden;
         min-width: 340px;
         width: auto;
       }
@@ -354,5 +355,29 @@
 
   @media (max-width: 700px) {
     flex-direction: column;
+  }
+}
+
+.hover {
+  position: relative;
+  .tooltip {
+    display: none;
+  }
+
+  &:hover {
+    .tooltip {
+      display: block!important;
+      position: absolute;
+      top: 20px;
+      left: 0;
+      z-index: 1;
+      background: rgba(0, 0, 0, 1);
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 500;
+      text-align: center;
+    }
   }
 }
