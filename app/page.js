@@ -18,7 +18,15 @@ export const getResults = async () => {
     "?alt=json&key=" +
     api_key;
 
-  const data = await fetch(dataUrl).then((res) => res.json());
+  const data = await fetch(dataUrl, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-cache",
+    
+  
+  }).then((res) => res.json());
   const [ids, results] = data.values;
 
   const matches = [];
