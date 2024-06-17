@@ -2,17 +2,19 @@
 import { Euro24matches, flags } from "../../data/matches";
 
 import { bets } from "../../data/bets";
+import { getResults } from "../../page";
 import styles from "../../page.module.scss";
 
 export default async function User({ params: { id } }) {
   const allBets = await bets;
   const userBets = allBets.filter((bet) => bet.userid === id);
+  const matches = await getResults();
 
   const user = {
     name: userBets[0].user,
     userid: userBets[0].userid,
     points: userBets.reduce((acc, bet) => {
-      const match = Euro24matches.find((match) => match.id === bet.id);
+      const match = matches.find((match) => match.id === bet.id);
       if (match.result) {
         return acc + (bet.bet === match.result.toString() ? 1 : 0);
       }
@@ -23,7 +25,7 @@ export default async function User({ params: { id } }) {
   const mergeMatches = userBets.map((bet) => {
     return {
       ...bet,
-      match: Euro24matches.find((match) => match.id === bet.id),
+      match: matches.find((match) => match.id === bet.id),
     };
   });
 

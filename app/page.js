@@ -4,9 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { bets } from "./data/bets";
 import styles from "./page.module.scss";
-import { use } from "react";
 
-const getResults = async () => {
+export const getResults = async () => {
   const spreadsheet_id = "1lgLIT3prMzMk_z8ea0IPX7zp5zIYU8eUzQer8HV6xTA";
   const tab_name = "resultater";
   const api_key = "AIzaSyDdPcUvHKUFXGFNq0MZgbJEeOjtzq4U07w";
